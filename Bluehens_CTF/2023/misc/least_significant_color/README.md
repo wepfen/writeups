@@ -72,4 +72,4 @@ for char in (lsb):
 3. For each bytes in lsb[], print its ascii value
 
 
-Output = `UDCTF{y0u_R_1mag3_wizZarD}+some unreadable`
+Output after cleaning : `UDCTF{y0u_R_1mag3_wizZarD}`
