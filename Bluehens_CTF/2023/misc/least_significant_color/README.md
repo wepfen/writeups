@@ -5,6 +5,7 @@
 >
 > -azroberts
 
+![encoded.png](https://github.com/1Tyron140/writeups/blob/main/Bluehens_CTF/2023/misc/least_significant_color/least_significant_color.png?raw=true)
 So for this challenge we got an image file provided `encoded.png`. <br>
 All we have to know is in the title AND in the description. 
 
