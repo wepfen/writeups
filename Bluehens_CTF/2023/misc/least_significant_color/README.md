@@ -1,5 +1,5 @@
 # Bluehens CTF 2023 - Least significant color
-
+[CTFtime](https://ctftime.org/writeup/38123)
 
 >I can't decide which color is the least significant... red xor green?
 >
