@@ -1,15 +1,3 @@
-+++
-title = 'BraekerCTF 2024 - Block construction'
-date = 2024-02-24T18:39:49+01:00
-draft = false
-description = "braeker CTF 2024 - cryptography "
-showTableOfContents = false
-## below are user-defined parameters (lower case keys recommended)
-tags = ["crypto","writeup"]
-type = "post"
-toc = false
-+++
-
 > "Sir, sir! This is a construction site." You look up at what you thought was a building 
 being constructed, but you realize it is a construction bot. "Sir please move aside. 
 I had to have these blocks in order since last week, but some newbie construction bot shuffled them." 
@@ -60,7 +48,7 @@ with open('ciphertext','w') as f:
 First of all, we need to know that AES encrypt block of 16 characters. 
 However, in this challenge, strings of 32 characters are encrypted. Meaning thatm the first 16 characters are encrypted, then the 16 other and finally the two cipher are concatenated to make the final ciphertext.
 
-![Explanation of AES encryption](../../images/explanation_aes_encrypt.png)
+![Explanation of AES encryption]([../../images/explanation_aes_encrypt.png](https://raw.githubusercontent.com/wepfen/writeups/main/braekerCTF/2024/crypto/block_construction/explanation_aes_encrypt.png))
 
 In this image, we can understand that if the two 16 chars halves of a 32 chars bloc are the same, thus the encryption of the two halves will be the same.
 
