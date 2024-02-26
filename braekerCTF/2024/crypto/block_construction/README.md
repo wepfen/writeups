@@ -48,7 +48,7 @@ with open('ciphertext','w') as f:
 First of all, we need to know that AES encrypt block of 16 characters. 
 However, in this challenge, strings of 32 characters are encrypted. Meaning thatm the first 16 characters are encrypted, then the 16 other and finally the two cipher are concatenated to make the final ciphertext.
 
-![Explanation of AES encryption]([../../images/explanation_aes_encrypt.png](https://raw.githubusercontent.com/wepfen/writeups/main/braekerCTF/2024/crypto/block_construction/explanation_aes_encrypt.png))
+![Explanation of AES encryption](https://raw.githubusercontent.com/wepfen/writeups/main/braekerCTF/2024/crypto/block_construction/explanation_aes_encrypt.png)
 
 In this image, we can understand that if the two 16 chars halves of a 32 chars bloc are the same, thus the encryption of the two halves will be the same.
 
