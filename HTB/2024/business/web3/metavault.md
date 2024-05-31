@@ -1,4 +1,6 @@
->MetaVault - Blockchain - Easy
+> Difficulty : easy
+
+> [Source files](https://github.com/hackthebox/business-ctf-2024/tree/main/blockchain/MetaVault%20%5BEasy%5D)
 
 >The Ministry of Defense released the open source of "MetaVault", the country's Ethereum reserves. It's said that they keeps secrets in a meta-location, so that no one can know them.
 
@@ -6,14 +8,90 @@
 
 The challenge introduces to the use of meta-data in a solidity contract
 
-To validate we need to stole all ether of the target contract.
+To validate we need to steal all ether of the target contract.
 
 # Recon
 
+## TL;DR
+
+So for i solving i just have to :
+- Get the bytecode of the contract
+- Send it to https://playground.sourcify.dev/
+- Get the plaintext password
+- Interact with target and get my ethers
 
 ## Code
 
-The source codes can be found [here]() (insert link to my github)
+MetaVault.sol
+
+```solidity
+// SPDX-License-Identifier: MoD-Internal-v1.0
+pragma solidity 0.8.25;
+
+/**
+ * @title MetaVault
+ * @author Ministry of Defense
+ * @notice MoD (Ministry of Defense) Smart Contract storing the country's ETH reserves.
+ */
+contract MetaVault {
+    /**
+     * @notice Keccak256 hashed secret passphrase to enable emergency mode.
+     * @dev plaintext secret: WeLoveNukaCola!!MoD-2024 
+     * @dev The secret will be stripped before open sourcing the code. Comments are not compiled anyway.
+     */ 
+    bytes32 constant private VAULT_SECRET_K256 = 0x42c10591ced4987005f70d29b498348ecc8ab18dd28c5b93db931375ca826b5e; 
+    
+    event Deposit(
+        address indexed _from,
+        uint256 indexed _value,
+        uint256 indexed _updatedBalance
+    );
+    event FailedLoginAttempt(
+        address indexed _from,
+        string  indexed _attempt,
+        bytes32 indexed _hashedAttempt
+    );
+    event EmergencyMode(
+        address indexed _by,
+        address indexed _fundsDestination
+    ); 
+
+    /**
+     * @dev Retrieves the current ETH balance of the vault.
+     * @return balance of the vault in wei.
+     */
+    function getVaultBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    /**
+     * @notice Deposit function to receive ETH deposits.
+     * @dev emits a Deposit event with the depositor, the value deposited and the updated balance after deposit.
+     */
+    function deposit() public payable {
+        emit Deposit(
+            msg.sender,
+            msg.value,
+            getVaultBalance()
+        );        
+    }
+
+    /**
+     * @notice Function to fire the emergency mode by selfdestructing the contract and transfering the funds away.
+     * @param _secret The secret passphrase required to activate emergency mode.
+     * @dev The secret is shared only to MoD devs.
+     */
+    function emergency(string memory _secret) external {
+        bytes32 attempt_k256 = keccak256(bytes(_secret));
+        if (attempt_k256 == VAULT_SECRET_K256) {
+            emit EmergencyMode(msg.sender, msg.sender);
+            selfdestruct(payable(msg.sender));
+        } else {
+            emit FailedLoginAttempt(msg.sender, _secret, attempt_k256);
+        }
+    }
+}
+```
 
 Looking at the source code of `MetaVault.sol` we can notice 
 
@@ -29,11 +107,11 @@ Reading comments, we understand that the password for `emergency` was stored in 
 * @dev The secret will be stripped before open sourcing the code. Comments are not compiled anyway.     
 ```
 
-Luckily for us, reading this [page](https://playground.sourcify.dev/) we can understand that they actually are. We just have to supply the contract bytecode.
+Luckily for us, reading this [page](https://playground.sourcify.dev/) (which i find by googling `solidity meta-data lookup` and reading https://docs.sourcify.dev/docs/metadata/) we can understand that they actually are. We just have to supply the contract bytecode (the source code but [translated](https://blog.chain.link/what-are-abi-and-bytecode-in-solidity/).
 
 ## Interacting with the instance
 
-Launching the instance i got 3 ips, one for the rpc endpoint, one which is the webpage of MetaSafe (the name of the vault for the scenario) and on IP to manage the instance an get the flag.
+Launching the instance i got 3 ips, one for the rpc endpoint, one which is the webpage of MetaSafe (the name of the vault for the scenario) and one IP to manage the instance an get the flag.
 
 I contact the last IP with nc `nc 94.237.61.244 38186` and request the information for the challenge:
 
@@ -52,25 +130,17 @@ Setup contract  :  0x6224fF48Af65663fB8b10CF830ECAC6F75B674f6
 
 So now i got my address, my private key and the target address.
 
-# Solving
+# Solve
 
-## TL;DR
-
-So for i solving i just have to :
-- Get the bytecode of the contract
-- Send it to https://playground.sourcify.dev/
-- Get the plaintext password
-- Interact with target and get my ethers
-
-## Using foundry
+## Casting spells
 
 We will use foundry to solve and it's **EXTREMELY** useful **cast** command. Here is the doc: https://book.getfoundry.sh/reference/cli/cast.html.
 
-With cast we cast we can do everything we need: publishing a transaction, call functions of contract WITHOUT publishing a transaction, doing data conversions, getting informations of blocs, getting transaction informations and **getting the bytecode of a contract**.
+With cast we can do everything we need: publishing a transaction, calling functions of contract WITHOUT publishing a transaction, doing data conversions, getting informations of blocs, getting transaction informations or even **getting the bytecode of a contract**.
 
 Let's setup our envrionement:
 
-With foundry installed installed ( i use a debian VM by the way ), we will set up environment variable to make everything prettier and easier.
+With foundry installed installed ( i use a debian VM for the challenges ), we will set up environment variable to make everything prettier and easier.
 
 ### environment variables
 
@@ -117,7 +187,7 @@ Now we are ready to exploit.
 
 `cast send $TARGET -r $RPC_URL -f $ATTACKER --private-key $PRIVATE_KEY  "emergency(string)" 'WeLoveNukaCola!!MoD-2024'`
 
-5. Get the flag by contacting the instace managing IP 
+5. Get the flag by contacting the instace management IP 
 
 `HTB{wh0_tf_sh4r3s_s3cr3ts_1n_th3_c0mm3nts}`
 
@@ -126,3 +196,11 @@ Now we are ready to exploit.
 https://book.getfoundry.sh/reference/cast/cast-send
 
 https://docs.soliditylang.org/en/latest/cheatsheet.html
+
+https://docs.soliditylang.org/en/latest/natspec-format.html
+
+https://playground.sourcify.dev/
+
+https://docs.sourcify.dev/docs/metadata/
+
+https://blog.chain.link/what-are-abi-and-bytecode-in-solidity/
