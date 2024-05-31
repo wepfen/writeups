@@ -93,7 +93,7 @@ I can for instance check the balance of my contract with this noob tier command 
 
 So now i understand that i got my address, my private key and the target contract address and how to interact with it.
 
-To make commands easier, i will set environment variables:
+To make commands easier, i will set local environment variables in a file name `.env`:
 
 ```
 PRIVATE_KEY=0x0a5c3d2e7717a2f9292d5f13084352a800cad51eb923b169184b22f9863ad554
@@ -101,6 +101,8 @@ RPC_URL=http://94.237.61.244:38424/
 TARGET=0x03d65b9e5740f7a8b8c9aAfAc74fB26Ff2328eC4
 ATTACKER=0xF7b5424a61fFD3Afa8B2a1350d94Ff06D1f13eF7
 ```
+
+And apply the variables: `source .env`
 
 I also noticed that cast blockchain spells with `cast send` doesn't increase block number if the transaction fail due to the `require` in the target contract. So i can try multiple time until i got it right..
 
