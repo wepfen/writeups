@@ -7,7 +7,7 @@ You can read them [here](https://wepfen.github.io/writeups/)
 BluehensCTF 2023
   - Least Significant Color [Misc]
 
-# 2024
+## 2024
 
 BraekerCTF 2024
   - Block construction [crypto]
