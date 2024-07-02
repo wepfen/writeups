@@ -33,7 +33,8 @@ There are a lot more but too lazy to post them :D
 | Name                                                            | Category  | Topics        |
 |-----------------------------------------------------------------|-----------|---------------|
 | [Messengesus 1](braekerCTF/2024/crypto)                         | Crypto    | PRNG          |
-| [Block Construction](braekerCTF/2024/crypto/block_construction) | Crypto    | Custom cipher |
+| [Block Construction](braekerCTF/2024/crypto/block_construction) | Crypto    | AES           |
+
 
 
 ### GCC CTF 2024
