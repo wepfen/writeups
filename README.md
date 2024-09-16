@@ -6,6 +6,7 @@ You can read them [here](https://wepfen.github.io/writeups/)
 - BraekerCTF 2024
 - HTB Business CTF 2024
 - GCC CTF 2024
+- Project Sekai 2024
 
 There are a lot more but too lazy to post them :D
 
@@ -44,3 +45,8 @@ There are a lot more but too lazy to post them :D
 | [GCC NEWS](GCC-CTF/2024/gccnews.md)                                        | Crypto    | RSA                                    |
 
 
+### Project Sekai CTF 2024
+
+| Name                                                         	| Category 	| Topics          	|
+|--------------------------------------------------------------	|----------	|-----------------	|
+| [Play To Earn](ProjectSekaiCTF/2024/blockchain/playtoearn.md)	| web3     	| ECDSA signature 	|
