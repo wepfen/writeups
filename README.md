@@ -7,6 +7,7 @@ You can read them [here](https://wepfen.github.io/writeups/)
 - HTB Business CTF 2024
 - GCC CTF 2024
 - Project Sekai 2024
+- DefCamp Quals 2024
 
 There are a lot more but too lazy to post them :D
 
@@ -50,3 +51,9 @@ There are a lot more but too lazy to post them :D
 | Name                                                         	| Category 	| Topics          	|
 |--------------------------------------------------------------	|----------	|-----------------	|
 | [Play To Earn](ProjectSekaiCTF/2024/blockchain/playtoearn.md)	| web3     	| ECDSA signature 	|
+
+### DefCamp Quals 2024
+
+| Name                              	| Category 	| Topics              	|
+|-----------------------------------	|----------	|---------------------	|
+| [ctr](defcampCTF/2024/ctr/ctr.md) 	| crypto   	| AES CTR nonce reuse 	|
