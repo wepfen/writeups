@@ -8,6 +8,7 @@ You can read them [here](https://wepfen.github.io/writeups/)
 - GCC CTF 2024
 - Project Sekai 2024
 - DefCamp Quals 2024
+- HeroCTF v6
 
 There are a lot more but too lazy to post them :D
 
@@ -57,3 +58,11 @@ There are a lot more but too lazy to post them :D
 | Name                              	| Category 	| Topics              	|
 |-----------------------------------	|----------	|---------------------	|
 | [ctr](defcampCTF/2024/ctr/ctr.md) 	| crypto   	| AES CTR nonce reuse 	|
+
+
+### HeroCTF v6
+
+| Name                                                	| Category 	| Topics                                             	|
+|-----------------------------------------------------	|----------	|----------------------------------------------------	|
+| [interpolation](HeroCTF/v6/crypto/interpolation.md) 	| crypto   	| Lagrange interpolation and rainbow tables          	|
+| [halloween](HeroCTF/v6/crypto/halloween.md)         	| crypto   	| GOST, symmetric cipher, bad implementation, Github 	|
